@@ -43,9 +43,13 @@ addBtn.addEventListener("click", (e) => {
 
     li.appendChild(p);
 
+    // Agregar un elemento de estado como hijo del elemento <li>
+
+    li.appendChild(addStatusElement());
+
     // Agregar el boton de eliminacion como hijo del elemento <li>
 
-    li.appendChild(addDeleteBtn())
+    li.appendChild(addDeleteBtn());
 
     // Agergarle el elemento <li> como hijo del elemento <ul>
 
@@ -93,15 +97,41 @@ function addDeleteBtn() {
 
     // Verificamos que no existan elementos <li> despues de eliminar uno
 
-    if(items.length===0){
-        // Muestra el elemento con la clase "empty"
+    if (items.length === 0) {
+      // Muestra el elemento con la clase "empty"
 
-        empty.style.display="block"
-
+      empty.style.display = "block";
     }
-
   });
 
   // Retornar el boton de eliminar
-  return deleteBtn
+  return deleteBtn;
+}
+
+// Funcion para agregar un elemetno de estado (Por defecto va a ser "P")
+
+function addStatusElement() {
+  // Crear un nuevo elemento <span>
+
+  const statusSpan = document.createElement("span");
+
+  // Establece la clase del elemento
+
+  statusSpan.className = "status";
+
+  // Establece el texto del elemento por defecto. En este caso "En Progreso"
+
+  statusSpan.textContent = "En Progreso";
+
+  // Agregar un evento para cambiar el estado
+
+  statusSpan.addEventListener("click", () => {
+    if (statusSpan.textContent === "En progreso") {
+      statusSpan.textContent = "Completado";
+    } else {
+      statusSpan.textContent = "En progreso";
+    }
+  });
+
+  return statusSpan;
 }
